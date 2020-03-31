@@ -113,7 +113,7 @@ export const store=new Vuex.Store({
     },
     actions:{
         loadUser:(context)=>{
-            Vue.http.get(`https://covid-19-server.firebaseio.com/users.json?auth=${context.state.idToken}`).then(res=>{
+            Vue.http.get(`users.json?auth=${context.state.idToken}`).then(res=>{
             return res.json()
             }).then(data=>{
                 context.commit('loadUser',data);
@@ -122,7 +122,7 @@ export const store=new Vuex.Store({
         loadMo:(context,payload)=>{
             if(payload==null)
             payload="";
-            Vue.http.get(`https://covid-19-server.firebaseio.com/gov/mo/${payload}.json?auth=${context.state.idToken}`).then(res=>{
+            Vue.http.get(`/gov/mo/${payload}.json?auth=${context.state.idToken}`).then(res=>{
             return res.json()
             }).then(data=>{
                 context.commit('loadMo',data);
@@ -131,7 +131,7 @@ export const store=new Vuex.Store({
         loadChc:(context,payload)=>{
             if(payload==null)
             payload="";
-            Vue.http.get(`https://covid-19-server.firebaseio.com/gov/chc/${payload}.json?auth=${context.state.idToken}`).then(res=>{
+            Vue.http.get(`/gov/chc/${payload}.json?auth=${context.state.idToken}`).then(res=>{
                 return res.json()
             }).then(data=>{
                 context.commit('loadChc',data);
@@ -140,7 +140,7 @@ export const store=new Vuex.Store({
         loadPhc:(context,payload)=>{
             if(payload==null)
             payload="";
-            Vue.http.get(`https://covid-19-server.firebaseio.com/gov/phc/${payload}.json?auth=${context.state.idToken}`).then(res=>{
+            Vue.http.get(`/gov/phc/${payload}.json?auth=${context.state.idToken}`).then(res=>{
                 return res.json()
             }).then(data=>{
                 context.commit('loadPhc',data);
@@ -176,20 +176,20 @@ export const store=new Vuex.Store({
         })
         },
         loadAdvisory:(context)=>{
-            Vue.http.get(`https://covid-19-server.firebaseio.com/advisory.json?auth=${context.state.idToken}`).then(res=>{
+            Vue.http.get(`/advisory.json?auth=${context.state.idToken}`).then(res=>{
                 return res.json();
             }).then(data=>{
                 context.commit("setAdvisory",data);
             })
         },
         submitForm:(context,payload)=>{
-            Vue.http.post(`https://covid-19-server.firebaseio.com/advisory.json?auth=${context.state.idToken}`,payload).then(res=>{
+            Vue.http.post(`/advisory.json?auth=${context.state.idToken}`,payload).then(res=>{
                 context.dispatch("loadAdvisory");
                 alert("Posted Update")
             })
         },
         deleteData:(context,payload)=>{
-            Vue.http.delete(`https://covid-19-server.firebaseio.com/advisory/${payload}.json?auth=${context.state.idToken}`).then(res=>{
+            Vue.http.delete(`/advisory/${payload}.json?auth=${context.state.idToken}`).then(res=>{
                 context.dispatch("loadAdvisory");
                 alert("Deleted")
             })
@@ -198,7 +198,7 @@ export const store=new Vuex.Store({
             let globalToken=null;
             payload["userData"]["email"]=payload["sendData"]["email"];
             context.state.loginDetails.choice=payload["userData"]["choice"];
-            Vue.http.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAD_szUOB_qzyM8cGhI5lA9YaWdv-c7k0A",payload["sendData"]).then(res=>{
+            Vue.http.post("",payload["sendData"]).then(res=>{
             if(res["ok"])
             {
                 globalToken=res["body"];
@@ -208,7 +208,7 @@ export const store=new Vuex.Store({
                     delete payload["userData"]["common"];
                     payload["userData"]["id"]="c-"+Math.floor(Math.random()*1000000);
                     
-                    Vue.http.post(`https://covid-19-server.firebaseio.com/gov/chc.json?auth=${res["body"]["idToken"]}`,payload["userData"]).then(res=>{    
+                    Vue.http.post(`/gov/chc.json?auth=${res["body"]["idToken"]}`,payload["userData"]).then(res=>{    
                         context.state.loginDetails.email=globalToken["email"];
                         context.state.loginDetails.id=payload["userData"]["id"];
                     alert("Registered Succefully! Login with the details");
@@ -222,11 +222,11 @@ export const store=new Vuex.Store({
                     delete payload["userData"]["common"];
                     payload["userData"]["id"]="p-"+Math.floor(Math.random()*1000000);
                     
-                    Vue.http.post(`https://covid-19-server.firebaseio.com/gov/phc.json?auth=${res["body"]["idToken"]}`,payload["userData"]).then(response=>{
+                    Vue.http.post(`/gov/phc.json?auth=${res["body"]["idToken"]}`,payload["userData"]).then(response=>{
                         if(response["ok"])
                         {   
                             token=response["body"]["idToken"];
-                            Vue.http.get(`https://covid-19-server.firebaseio.com/gov/chc.json?auth=${globalToken["idToken"]}`).then(res=>{
+                            Vue.http.get(`/gov/chc.json?auth=${globalToken["idToken"]}`).then(res=>{
                                 return res.json()
                             }).then(data=>{
                                 let keys=Object.keys(data);
@@ -245,7 +245,7 @@ export const store=new Vuex.Store({
                                             make["phcAllocated"]=[...make["phcAllocated"],payload["userData"]["id"]]
 
                                         }
-                                        Vue.http.put(`https://covid-19-server.firebaseio.com/gov/chc/${keys[i]}.json?auth=${globalToken["idToken"]}`,make).then(res=>{
+                                        Vue.http.put(`/gov/chc/${keys[i]}.json?auth=${globalToken["idToken"]}`,make).then(res=>{
                                         context.state.idToken=globalToken["idToken"];
                                         context.state.userId=globalToken["userId"];
                                         context.state.loginDetails.email=globalToken["email"];
@@ -280,7 +280,7 @@ export const store=new Vuex.Store({
             // setTimeout(()=>context.commit('doLogin',payload),1000);
         },
         login:(context,payload)=>{
-            Vue.http.post("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAD_szUOB_qzyM8cGhI5lA9YaWdv-c7k0A",payload ).then(res=>{
+            Vue.http.post("",payload ).then(res=>{
                 return res.json();
             }).then(data=>{
                 context.state.idToken=data["idToken"];
@@ -304,7 +304,7 @@ export const store=new Vuex.Store({
                 });
                     if(!chc)
                 {
-                    Vue.http.get(`https://covid-19-server.firebaseio.com/gov/phc.json?auth=${data["idToken"]}`).then(res=>{
+                    Vue.http.get(`/gov/phc.json?auth=${data["idToken"]}`).then(res=>{
                         return res.json();
                     }).then(data=>{
                         let keys=Object.keys(data);

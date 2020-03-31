@@ -3,11 +3,23 @@
 > This Project helps Community and Public health centers to work efficiently and united. This Project is to connect all the different aspects like Medical Officers, Health Centers, Government Officials, Patients and other users. To check alerts, to create and watch advisory, Access to patient Data, and grasping realtime data for analytics.
 
 # Technologies Used
+<h3>Front End</h3>
 <ul>
   <li> Vue </li>
   <li> Vue Router & Vue CLI </li>
   <li>Vuex For State Management</li>
   <li>Bootstrap</li>
+</ul>
+<h3>Back End</h3>
+<ul>
+  <li> Firebase </li>
+  <li> Rest API </li>
+  <li> Flask</li>
+  <li> Heroku </li>
+</ul>
+<h3>Hosting</h3>
+<ul>
+  <li> Amazon S3 </li>
 </ul>
 
 ## Build Setup

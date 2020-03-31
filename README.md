@@ -1,6 +1,14 @@
-# admin
+# Corona-Reflief-Admin-Panel
 
-> A Vue.js project
+> This Project helps Community and Public health centers to work efficiently and united. This Project is to connect all the different aspects like Medical Officers, Health Centers, Government Officials, Patients and other users. To check alerts, to create and watch advisory, Access to patient Data, and grasping realtime data for analytics.
+
+# Technologies Used
+<ul>
+  <li> Vue </li>
+  <li> Vue Router & Vue CLI </li>
+  <li>Vuex For State Management</li>
+  <li>Bootstrap</li>
+</ul>
 
 ## Build Setup
 
@@ -15,4 +23,4 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+

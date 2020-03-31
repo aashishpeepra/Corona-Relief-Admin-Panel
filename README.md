@@ -1,2 +1,18 @@
-# Corona-Relief-Admin-Panel
-This website is designed for the government officials like Community and Public Health Centers. They can see the alerts the users post, Can modify other data. Get Latest Updates from different Sources about Corona Cases and map them for better Analytics. 
+# admin
+
+> A Vue.js project
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+```
+
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).

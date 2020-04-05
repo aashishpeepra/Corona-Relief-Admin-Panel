@@ -2,7 +2,10 @@
 
 > This Project helps Community and Public health centers to work efficiently and united. This Project is to connect all the different aspects like Medical Officers, Health Centers, Government Officials, Patients and other users. To check alerts, to create and watch advisory, Access to patient Data, and grasping realtime data for analytics.
 # Link
-<a href="http://covid-server.s3-website.ap-south-1.amazonaws.com/"><h3>The Website Is Hosted Here</h3></a>
+<a href="http://covid-server.s3-website.ap-south-1.amazonaws.com/"><h3>The Website Is Hosted Here</h3></a><br/>
+Here's ID and Password to try the website
+Email: aashishpeepra.ap@gmail.com
+Password: lol1234
 # Technologies Used
 <h3>Front End</h3>
 <ul>
